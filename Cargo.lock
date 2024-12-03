@@ -1017,7 +1017,6 @@ dependencies = [
  "uuid",
  "void",
  "warp",
- "wasm-bindgen",
  "web-time",
 ]
 
