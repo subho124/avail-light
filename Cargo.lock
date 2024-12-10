@@ -1097,6 +1097,7 @@ dependencies = [
  "console_error_panic_hook",
  "futures",
  "libp2p",
+ "serde_json",
  "sp-io",
  "tokio",
  "tokio_with_wasm",
