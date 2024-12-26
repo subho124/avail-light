@@ -334,7 +334,11 @@ async fn run(
 			.await;
 	}));
 
-	tracking::run(Duration::from_secs(2), &identity_cfg.avail_key_pair, state);
+	spawn_in_span(shutdown.with_cancel(tracking::run(
+		Duration::from_secs(2),
+		identity_cfg.avail_key_pair,
+		state,
+	)));
 	Ok(())
 }
 
@@ -444,6 +448,7 @@ impl BlockStat {
 struct ClientState {
 	metrics: Metrics,
 	active_blocks: HashMap<u32, BlockStat>,
+	latest_block: u32,
 }
 
 impl ClientState {
@@ -617,6 +622,7 @@ impl ClientState {
 						},
 						LcEvent::RecordBlockHeight(block_num) => {
 							self.metrics.record(MetricValue::BlockHeight(block_num));
+							self.latest_block = block_num;
 						},
 						LcEvent::RecordDHTStats {
 							fetched, fetched_percentage, fetch_duration
