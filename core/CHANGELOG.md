@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2
+
+- Update libp2p to 0.55, libp2p-allow-block-list to 0.5 and libp2p-webrtc-websys to 0.4 version
+
 ## [1.2.1](https://github.com/availproject/avail-light/tree/avail-light-core-v1.2.1) - 2025-02-10
 
 - Batch rows RPC requests
